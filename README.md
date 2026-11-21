@@ -178,13 +178,13 @@ qday-streaming-agent/
 |   |   +-- deploy.ts
 |   +-- hardhat.config.ts
 |   +-- tsconfig.json
-|   +-- .env
+|   +-- .env.example
++-- public/
 +-- src/                            # React + wagmi + RainbowKit dApp
 |   +-- App.tsx
 |   +-- App.css
 |   +-- wagmi.ts
 |   +-- main.tsx
-+-- public/
 +-- index.html
 +-- package.json                    # Vite + React app
 +-- vite.config.ts
