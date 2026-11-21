@@ -44,13 +44,13 @@ Full lifecycle demonstrated on Aevum testnet:
 
 | # | Action | Tx hash | Block |
 |---|---|---|---|
-| 1 | Deploy `AgentAuthorization` | (fill from explorer) | - |
-| 2 | Deploy `StreamingAgent` | (fill from explorer) | - |
-| 3 | `setStreamingContract(StreamingAgent)` | (fill from explorer) | - |
+| 1 | Deploy `AgentAuthorization` | [`0xa77e5736...20a9`](https://explorer-test.qday.info/tx/0xa77e57360cb47216e4dcc8908746c23d89dc6732f61a5146571e0a492e8320a9) | 3690297 |
+| 2 | Deploy `StreamingAgent` | [`0xe9c40168...21b5`](https://explorer-test.qday.info/tx/0xe9c40168da194000c8109527003cb8dc8a0751e0535a67c959023eb65cea21b5) | 3690307 |
+| 3 | `setStreamingContract(StreamingAgent)` | [`0x5d288375...efbc`](https://explorer-test.qday.info/tx/0x5d288375d730c45cb434d81762a7ef64c0205511e8cae67730d0819a3664efbc) | 3690317 |
 | 4 | Create Stream #0 (0.1 tUSD8, 60s) | [`0x948ab942...0a52`](https://explorer-test.qday.info/tx/0x948ab942d4882b5af3233ca7cdb68c098e6d25a28e6aa61695b15d3382e00a52) | 3692321 |
 | 5 | Create Stream #1 (0.1 tUSD8, 60s) | [`0x32edba1f...37db`](https://explorer-test.qday.info/tx/0x32edba1fb8d8964f223ebb4eaf0692d15891fa59421783c56c17029c9d8437db) | 3692765 |
 | 6 | Withdraw Stream #0 (recipient, full) | [`0x2411a862...07cf`](https://explorer-test.qday.info/tx/0x2411a862c430a9b5bd82f06539609aea7add3aa782649e79b1ddf8830fb607cf) | 3693108 |
-| 7 | Create Stream #2 (0.1 tUSD8, 60s) | (fill from explorer) | - |
+| 7 | Create Stream #2 (0.1 tUSD8, 60s) | [`0x3faec402...eb67`](https://explorer-test.qday.info/tx/0x3faec4024d387d7ce127bab8569bbe08a380b82ca9e36baf1d58c06da991eb67) | 3693473 |
 | 8 | Cancel Stream #2 (sender refund) | [`0xbc1d3601...7318`](https://explorer-test.qday.info/tx/0xbc1d36016c5f6491997ec0c7820049b0664e1d49475fee09374780166ff07318) | 3693530 |
 
 Key observations from the explorer:
@@ -305,4 +305,4 @@ Notable test design choices:
 
 ## License
 
-MIT - see `LICENSE`.
+MIT - see [LICENSE](./LICENSE).
