@@ -6,7 +6,98 @@ Aevum Builder Challenge #1 submission - QDay / DoraHacks.
 
 ---
 
-## What this is
+## What this is (in plain terms)
+
+StreamPay AI lets you pay someone **continuously over time** instead of in one lump sum - and lets an **AI agent** set up those payments on your behalf, within strict limits you control.
+
+Think of it like a **salary paid every second** instead of every month.
+
+You put money into a "stream" once. That money unlocks to the recipient gradually - a little every second. The recipient can withdraw whatever has unlocked so far, anytime. You can cancel at any point and get the unvested balance back.
+
+Because the spending limits are written into the smart contract, you can safely let an AI agent create these payments automatically. The agent can never overspend, and you can revoke its permission in one click.
+
+### What was built
+
+Three pieces working together:
+
+**1. `AgentAuthorization` - the permission slip contract**
+
+This is where you say: *"I trust this AI agent up to 1000 tUSD8 total, max 100 per payment, for the next 30 days."*
+
+- The agent can never exceed your limits - the contract rejects the transaction.
+- You can revoke the agent at any time. All pending approvals instantly become invalid.
+- Re-authorizing the agent resets their allowance. Old approvals can never execute after that.
+
+**2. `StreamingAgent` - the escrow and drip contract**
+
+Money goes in as one lump sum, then unlocks to the recipient every second.
+
+- **Recipient** can withdraw whatever has unlocked so far, at any moment.
+- **Sender** can cancel anytime. The recipient keeps what unlocked, the sender gets the rest back.
+- All balances are tracked on-chain. No one can withdraw more than they are owed.
+
+**3. The web app**
+
+A simple React dApp where you:
+
+1. Connect your wallet
+2. Paste a recipient address, an amount, and a duration
+3. Click "Approve & Create Stream"
+4. Watch the money stream out, second by second
+
+The UI shows your tUSD8 balance, the recipient, the vesting rate, and a live progress bar that fills as the stream unlocks.
+
+### Benefits to the user
+
+**No lump-sum risk**
+
+You do not hand over all the money at once. If the recipient disappears, stops delivering, or you change your mind, you cancel and keep the unvested portion.
+
+**AI agents can pay safely**
+
+You can let an AI agent send payments automatically without giving it custody of your funds. The agent can only spend up to the limits you set. Hard caps are enforced by the contract, not by trust.
+
+**Revoke in one click**
+
+One button turns off the agent. Every pending payment approval becomes invalid immediately. Nothing stale can execute.
+
+**Recipient gets paid fairly**
+
+They do not wait 30 days. They withdraw whatever has vested at any moment. If you cancel on day 20 of 30, they keep 2/3 of the money - the portion that already unlocked.
+
+**No trust required**
+
+The rules live in the smart contract. Nobody can bypass the limits - not the recipient, not the agent, not even the contract owner.
+
+### How it is used (real scenario)
+
+**Scenario:** A company hires a freelancer for 30 days at 0.1 tUSD8 per day.
+
+1. **Day 0** - The company's AI accounting agent creates a stream: 3 tUSD8 total, over 30 days, to the freelancer's wallet.
+
+2. **Day 1** - 0.1 tUSD8 has unlocked. The freelancer clicks "Withdraw" and gets paid for day 1.
+
+3. **Day 15** - 1.5 tUSD8 unlocked. Freelancer withdraws again.
+
+4. **Day 20** - The freelancer quits. The company clicks "Cancel". The freelancer keeps what already unlocked (2 tUSD8), the company gets the rest back (1 tUSD8).
+
+5. **Anyone can verify** - every payment and cancellation is visible on the blockchain explorer. No disputes possible.
+
+### Why this matters for AI-agent payments
+
+QDay is built for autonomous agents making on-chain payments. But letting an AI agent touch your money is dangerous - it could overspend, get hacked, or go rogue.
+
+StreamPay AI solves this:
+
+- **The AI agent can pay** recipients automatically
+- **The user stays in control** with hard limits and instant revocation
+- **The money is safe** because it is escrowed and drips out slowly
+
+This is a payment primitive that both humans and machines can trust.
+
+---
+
+## Technical overview
 
 StreamPay AI lets a user delegate *bounded* payment authority to an AI agent, then have that agent open time-vested stablecoin streams on the user's behalf - without ever giving the agent custody of funds.
 
@@ -181,6 +272,11 @@ qday-streaming-agent/
 |   +-- .env.example
 +-- public/
 +-- src/                            # React + wagmi + RainbowKit dApp
+|   +-- pages/
+|   | +-- CreateStream.tsx
+|   | +-- TrackStream.tsx
+|   | +-- About.tsx
+|   | +-- index.ts
 |   +-- App.tsx
 |   +-- App.css
 |   +-- wagmi.ts
