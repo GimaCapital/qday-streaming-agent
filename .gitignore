@@ -1,0 +1,15 @@
+﻿node_modules/
+.env
+hardhat/.env
+hardhat/node_modules/
+hardhat/artifacts/
+hardhat/cache/
+hardhat/ignition/
+hardhat/types/
+dist/
+.DS_Store
+*.log
+hardhat/.agents/
+hardhat/.claude/
+hardhat/AGENTS.md
+hardhat/CLAUDE.md
