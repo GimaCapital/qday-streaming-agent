@@ -79,8 +79,14 @@ export default function TrackStream({ initialStreamId = '' }: Props) {
   });
   const decimals = Number(decimalsData ?? 6);
 
-  const { mutateAsync: writeContractAsync, isPending: isWritePending, error: writeError } =
-  useWriteContract();
+//   const { mutateAsync: writeContractAsync, isPending: isWritePending, error: writeError } =
+//   useWriteContract();
+
+const {
+  writeContractAsync,
+  isPending: isWritePending,
+  error: writeError,
+} = useWriteContract();
 
 const { isLoading: isConfirming } = useWaitForTransactionReceipt({
   hash: lastTransaction as `0x${string}` | undefined,
