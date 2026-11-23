@@ -6,6 +6,25 @@ Aevum Builder Challenge #1 submission - QDay / DoraHacks.
 
 ---
 
+## Live demo
+
+**https://qday-streaming-agent.onrender.com**
+
+Connect any EVM wallet (MetaMask, Rabby, Coinbase, Brave, Frame, Trust). The dApp auto-configures QDay Aevum Testnet (Chain ID 44005) on first connect.
+
+> Render free tier may take 30-60 seconds to wake up on first load.
+
+---
+
+## Provenance
+
+Built by GimaCapital between Nov 20 and Nov 23, 2026, for Aevum Builder Challenge #1.
+
+Commit history: https://github.com/GimaCapital/qday-streaming-agent/commits/main
+
+Deployed on QDay Aevum testnet at blocks 3690297 and 3690307.
+First on-chain evidence tx: 0xa77e57360cb47216e4dcc8908746c23d89dc6732f61a5146571e0a492e8320a9
+
 ## What this is (in plain terms)
 
 StreamPay AI lets you pay someone **continuously over time** instead of in one lump sum - and lets an **AI agent** set up those payments on your behalf, within strict limits you control.
@@ -255,34 +274,34 @@ Any of these invalidates outstanding approvals (bumps `epoch`):
 
 ```
 qday-streaming-agent/
-+-- hardhat/                        # Hardhat project (contracts + tests + deploy)
-|   +-- contracts/                  # Solidity source
-|   |   +-- AgentAuthorization.sol
-|   |   +-- StreamingAgent.sol
-|   |   +-- interfaces/
-|   |   |   +-- IERC20.sol
-|   |   +-- MockERC20.sol           # test-only token + streaming stub
-|   +-- test/
-|   |   +-- AgentAuthorization.test.ts
-|   |   +-- StreamingAgent.test.ts
-|   +-- scripts/
-|   |   +-- deploy.ts
-|   +-- hardhat.config.ts
-|   +-- tsconfig.json
-|   +-- .env.example
++-- hardhat/ # Hardhat project (contracts + tests + deploy)
+| +-- contracts/ # Solidity source
+| | +-- AgentAuthorization.sol
+| | +-- StreamingAgent.sol
+| | +-- interfaces/
+| | | +-- IERC20.sol
+| | +-- MockERC20.sol # test-only token + streaming stub
+| +-- test/
+| | +-- AgentAuthorization.test.ts
+| | +-- StreamingAgent.test.ts
+| +-- scripts/
+| | +-- deploy.ts
+| +-- hardhat.config.ts
+| +-- tsconfig.json
+| +-- .env.example
 +-- public/
-+-- src/                            # React + wagmi + RainbowKit dApp
-|   +-- pages/
-|   | +-- CreateStream.tsx
-|   | +-- TrackStream.tsx
-|   | +-- About.tsx
-|   | +-- index.ts
-|   +-- App.tsx
-|   +-- App.css
-|   +-- wagmi.ts
-|   +-- main.tsx
++-- src/ # React + wagmi + RainbowKit dApp
+| +-- pages/
+| | +-- CreateStream.tsx
+| | +-- TrackStream.tsx
+| | +-- About.tsx
+| | +-- index.ts
+| +-- App.tsx
+| +-- App.css
+| +-- wagmi.ts
+| +-- main.tsx
 +-- index.html
-+-- package.json                    # Vite + React app
++-- package.json # Vite + React app
 +-- vite.config.ts
 +-- README.md
 ```
@@ -339,7 +358,7 @@ tUSD8              : 0x456569838f1d43009A91ebA4263147Afd7233483
 isWired            : true
 ```
 
-Use these in `src/App.tsx`.
+Use these in `src/pages/CreateStream.tsx` and `src/pages/TrackStream.tsx`.
 
 ### 3. Frontend
 

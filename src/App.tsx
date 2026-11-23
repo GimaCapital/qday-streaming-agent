@@ -104,14 +104,17 @@ export default function App() {
             onClick={() => switchTab('create')}
             aria-label="Home"
           >
-            <span className="nav-logo">💸</span>
+            <img
+              src="/AI-logo.jpg"
+              alt="StreamPay AI Logo"
+              className="nav-brand-image"
+            />
 
             <span className="nav-title">
               <span className="nav-title-main">StreamPay AI</span>
               <span className="nav-title-sub">by GIMBLAB</span>
             </span>
           </button>
-
           <div className="nav-links nav-links-desktop">
             <button
               className={tab === 'create' ? 'nav-link active' : 'nav-link'}
@@ -258,6 +261,16 @@ export default function App() {
                     </div>
                   </div>
 
+                  <div className="hero-feature">
+                  <span className="feature-icon">💸</span>
+
+                  <div>
+                    <strong>Intelligent Money Flow</strong>
+                    <span>
+                      Automate and manage programmable stablecoin payments
+                    </span>
+                  </div>
+                </div>
                 </div>
 
                 <div className="hero-bottom-line">

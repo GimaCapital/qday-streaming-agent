@@ -62,6 +62,13 @@ body {
   flex-shrink: 0;
 }
 
+.nav-brand-image {
+  width: 42px;
+  height: 42px;
+  object-fit: contain;
+  border-radius: 8px;
+}
+
 .nav-logo { font-size: 1.5rem; line-height: 1; }
 
 .nav-title {

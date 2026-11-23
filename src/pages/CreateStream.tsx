@@ -88,9 +88,6 @@ export default function CreateStream({ onCreated }: Props) {
   const tokenBalance = (tokenBalanceData ?? 0n) as bigint;
   const tokenBalanceStr = formatUnits(tokenBalance, decimals);
 
-//   const { mutateAsync: writeContractAsync, isPending: isWritePending } =
-//     useWriteContract();
-
   const {
   writeContractAsync,
   isPending: isWritePending,
