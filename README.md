@@ -3,7 +3,7 @@
 
 > **▶ Live demo:** https://qday-streaming-agent.onrender.com
 > **🎥 5-minute walkthrough:** https://youtu.be/SYJvHg6HocQ
-> **🎥 1-minute deployement unit testing:** https://youtu.be/fgeYSGlzY7o
+> **🎥 1-minute deploy + unit test:** https://youtu.be/fgeYSGlzY7o
 > **📦 Contracts (QDay Aevum Testnet, Chain 44005):**
 > [AgentAuthorization](https://explorer-test.qday.info/address/0xc2D2BF418F37ef4C433f12E66CdEe28E9E733CC0) ·
 > [StreamingAgent](https://explorer-test.qday.info/address/0xE8Ec4599E43f6d735603e5d7b0d2eB5D49Ec6209)
@@ -310,6 +310,41 @@ function bindAgentIdentity(address agent, uint256 erc8004Id) external onlyOwner 
 
 ```
 
+## Business model (post-mainnet)
+
+StreamPay AI charges a **0.3% protocol fee** on stream creation, paid in tUSD8. The fee is:
+
+- Configurable by the owner (bounded by a hard cap of 1%).
+- Waived for the first 1,000 streams during the mainnet launch phase.
+- Distributed to a treasury multisig, not to the deployer EOA.
+
+**Unit economics at scale:**
+
+| Monthly streamed volume | Fee @ 0.3% | Annual revenue |
+|---|---|---|
+| $1M | $3,000 | $36,000 |
+| $10M | $30,000 | $360,000 |
+| $100M | $300,000 | $3,600,000 |
+
+**Distribution plan:**
+
+1. **QDay-native integration** — bundle with QDay's agent SDK so every QDay agent that pays a human defaults to StreamPay AI for time-based payouts.
+2. **Freelance and contractor platforms** — direct integration with Web2 payroll tools that already serve crypto-native freelancers.
+3. **Agent-to-agent (A2A) payments** — the fastest-growing segment; StreamPay AI is the only QDay primitive with scoped, revocable, per-epoch agent delegation.
+
+**Path to production:**
+
+- Q1 2027: mainnet soft launch with 3 pilot customers (freelance platform, DAO treasury, AI agent framework).
+- Q2 2027: ERC-8004 identity integration + Stream NFTs.
+- Q3 2027: SDK release + 3 third-party integrations.
+
+## Ecosystem contributions
+
+- **QDay Starter Kit — tUSD8 decimal mismatch** — the starter kit's example code uses `parseEther` for amount entry, but tUSD8 is 6 decimals. Using `parseEther` silently multiplies amounts by 10^12. Recommended fix: `parseUnits(amount, 6)` with a decimals read from the token. [Issue link — paste URL after filing]
+- **QDay Starter Kit — Hardhat 3 migration note** — Hardhat 3 removes the named `ethers` export from `hardhat`. The fix is to create a connection with `const { ethers, networkHelpers } = await hre.network.create()`. [Issue link — paste URL after filing]
+
+> These were filed during the Aevum Builder Challenge #1 build window and are linked here so future QDay builders do not hit the same edge cases.
+
 ## Repository layout
 
 ```
@@ -442,11 +477,21 @@ Notable test design choices:
 |---|---|
 | Contracts | Solidity 0.8.20, no external dependencies |
 | Build / test | Hardhat 3, Mocha, Chai, `@nomicfoundation/hardhat-toolbox-mocha-ethers` |
-| Frontend | React 19, TypeScript, wagmi v3, viem, RainbowKit, TanStack Query, Vite |
+| Frontend | React 19, TypeScript, **wagmi v2**, viem, RainbowKit, TanStack Query, Vite |
 | Chain | QDay Aevum testnet (Chain ID 44005) |
 | Token | tUSD8 (ERC-20, 6 decimals) |
 
 ---
+
+## Known limitations
+
+This is a **testnet submission**, not a production deployment. The following are intentionally out of scope for the hackathon but are on the mainnet roadmap:
+
+- **No rate limiting on `withdraw`** — the recipient can withdraw as often as they want; the gas cost is theirs, not the protocol's.
+- **No upgradeability** — contracts are immutable by design. A bug means redeploy. The mainnet version will use a UUPS proxy behind a 48-hour timelock.
+- **No emergency pause** — the owner has no power to freeze user funds, by design. This is a feature for trust minimization, a risk for incident response. The mainnet version will add a pause that requires a 3-of-5 multisig.
+- **Single token** — StreamPay AI only supports tUSD8 today. Multi-token support (USDC, USDT) is scheduled for Q2 2027 and is a one-line change to the constructor.
+- **No formal verification** — the contracts are unit-tested (59 tests) and manually reviewed, but no Certora / Halmos formal verification has been performed. Scheduled for Q1 2027 pre-mainnet.
 
 ## What's next (post-mainnet)
 
