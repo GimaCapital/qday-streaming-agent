@@ -2,7 +2,7 @@
 # GIMBLOCKCHAIN StreamPay AI
 
 > **▶ Live demo:** https://qday-streaming-agent.onrender.com
-> **🎥 3-minute walkthrough:** https://youtu.be/YOUR_VIDEO_ID
+> **🎥 3-minute walkthrough:** https://youtu.be/VIDEO_ID
 > **📦 Contracts (QDay Aevum Testnet, Chain 44005):**
 > [AgentAuthorization](https://explorer-test.qday.info/address/0xc2D2BF418F37ef4C433f12E66CdEe28E9E733CC0) ·
 > [StreamingAgent](https://explorer-test.qday.info/address/0xE8Ec4599E43f6d735603e5d7b0d2eB5D49Ec6209)
