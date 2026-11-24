@@ -1,8 +1,15 @@
+<!-- C:\Users\HP\Desktop\qday-streaming-agent\README.md -->
 # GIMBLOCKCHAIN StreamPay AI
+
+> **▶ Live demo:** https://qday-streaming-agent.onrender.com
+> **🎥 3-minute walkthrough:** https://youtu.be/YOUR_VIDEO_ID
+> **📦 Contracts (QDay Aevum Testnet, Chain 44005):**
+> [AgentAuthorization](https://explorer-test.qday.info/address/0xc2D2BF418F37ef4C433f12E66CdEe28E9E733CC0) ·
+> [StreamingAgent](https://explorer-test.qday.info/address/0xE8Ec4599E43f6d735603e5d7b0d2eB5D49Ec6209)
 
 **Programmable stablecoin payment streams with controlled AI-agent authorization, built on QDay Aevum testnet.**
 
-Aevum Builder Challenge #1 submission - QDay / DoraHacks.
+Aevum Builder Challenge #1 submission — QDay / DoraHacks.
 
 ---
 
@@ -269,6 +276,38 @@ Any of these invalidates outstanding approvals (bumps `epoch`):
 - `owner` can only configure the streaming contract once. It has **no** power over user permissions or funds.
 
 ---
+
+---
+
+## ERC-8004 compatibility (design)
+
+StreamPay AI is architected so that the `agent` address in every `AgentPermission` can become an **ERC-8004 on-chain agent identity** without changing the streaming logic.
+
+**Current design → ERC-8004 mapping:**
+
+| ERC-8004 primitive | StreamPay AI today | Mainnet integration path |
+|---|---|---|
+| Agent identity registry | `agent` is an EOA address | Resolve `agent` → `erc8004Id` before `authorizeAgent` succeeds |
+| Agent reputation | Not on-chain | Store `erc8004Id` in `AgentPermission`; surface reputation in the dApp before the user signs |
+| Agent validation | `maxTotalSpend`, `maxPerPayment`, `expiresAt` | Same, plus an ERC-8004 attestation requirement for high-value agents |
+| Revocation signal | `revokeAgent` bumps `permission.epoch` | Emit an ERC-8004 "revoked" event in the same tx so reputation trackers update instantly |
+
+**Why the epoch model is the right foundation:**
+
+The `permission.epoch` field already implements the behavior ERC-8004 needs — every permission change atomically invalidates all prior approvals. Adding an ERC-8004 lookup is therefore *additive, not disruptive*: the epoch mechanism doesn't change; only the source of truth for "who is this agent" shifts from an arbitrary EOA to a registered identity.
+
+**Reserved design (not implemented in this submission):**
+
+```solidity
+// AgentAuthorization.sol — reserved for mainnet
+mapping(address agent => uint256 erc8004Id) public agentIdentity;
+
+function bindAgentIdentity(address agent, uint256 erc8004Id) external onlyOwner {
+    agentIdentity[agent] = erc8004Id;
+    emit AgentIdentityBound(agent, erc8004Id);
+}
+
+```
 
 ## Repository layout
 

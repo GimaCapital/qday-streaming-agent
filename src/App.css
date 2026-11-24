@@ -199,6 +199,42 @@ body {
   max-height: 440px;
 }
 
+/* Hero CTA row */
+.hero-cta-row {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin: 1.5rem 0 2rem;
+}
+
+.hero-cta-primary,
+.hero-cta-secondary {
+  font-size: 1.05rem;
+  padding: 0.9rem 1.6rem;
+  font-weight: 600;
+}
+
+.hero-cta-primary {
+  min-width: 180px;
+}
+
+.hero-cta-secondary {
+  min-width: 220px;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Demo link in nav */
+.nav-link-demo {
+  color: #a78bfa;
+  font-weight: 600;
+}
+.nav-link-demo:hover {
+  color: #c4b5fd;
+}
+
 .about-image-section {
   max-width: 900px;
   margin: 28px auto;
