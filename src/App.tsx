@@ -9,7 +9,7 @@ import './App.css';
 
 const QDAY_CHAIN_ID = qdayAevum.id;
 const TUSD8_ADDRESS = '0x456569838f1d43009A91ebA4263147Afd7233483' as const;
-const DEMO_VIDEO_URL = 'https://youtu.be/VIDEO_ID'; // TODO: replace once recorded
+const DEMO_VIDEO_URL = 'https://youtu.be/SYJvHg6HocQ';
 
 const ERC20_ABI = [
   {

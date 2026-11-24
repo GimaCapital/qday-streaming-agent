@@ -2,7 +2,8 @@
 # GIMBLOCKCHAIN StreamPay AI
 
 > **▶ Live demo:** https://qday-streaming-agent.onrender.com
-> **🎥 3-minute walkthrough:** https://youtu.be/VIDEO_ID
+> **🎥 5-minute walkthrough:** https://youtu.be/SYJvHg6HocQ
+> **🎥 1-minute deployement unit testing:** https://youtu.be/fgeYSGlzY7o
 > **📦 Contracts (QDay Aevum Testnet, Chain 44005):**
 > [AgentAuthorization](https://explorer-test.qday.info/address/0xc2D2BF418F37ef4C433f12E66CdEe28E9E733CC0) ·
 > [StreamingAgent](https://explorer-test.qday.info/address/0xE8Ec4599E43f6d735603e5d7b0d2eB5D49Ec6209)
@@ -294,7 +295,7 @@ StreamPay AI is architected so that the `agent` address in every `AgentPermissio
 
 **Why the epoch model is the right foundation:**
 
-The `permission.epoch` field already implements the behavior ERC-8004 needs — every permission change atomically invalidates all prior approvals. Adding an ERC-8004 lookup is therefore *additive, not disruptive*: the epoch mechanism doesn't change; only the source of truth for "who is this agent" shifts from an arbitrary EOA to a registered identity.
+The `permission.epoch` field already implements the behavior ERC-8004 needs, every permission change atomically invalidates all prior approvals. Adding an ERC-8004 lookup is therefore *additive, not disruptive*: the epoch mechanism doesn't change; only the source of truth for "who is this agent" shifts from an arbitrary EOA to a registered identity.
 
 **Reserved design (not implemented in this submission):**
 
