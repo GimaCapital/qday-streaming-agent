@@ -1,11 +1,11 @@
-<!-- C:\Users\HP\Desktop\qday-streaming-agent\README.md -->
+﻿<!-- C:\Users\HP\Desktop\qday-streaming-agent\README.md -->
 # GIMBLOCKCHAIN StreamPay AI
 
-> **▶ Live demo:** https://qday-streaming-agent.onrender.com
-> **🎥 5-minute walkthrough:** https://youtu.be/SYJvHg6HocQ
-> **🎥 1-minute deploy + unit test:** https://youtu.be/fgeYSGlzY7o
-> **📦 Contracts (QDay Aevum Testnet, Chain 44005):**
-> [AgentAuthorization](https://explorer-test.qday.info/address/0xc2D2BF418F37ef4C433f12E66CdEe28E9E733CC0) ·
+> **â–¶ Live demo:** https://qday-streaming-agent.onrender.com
+> **ðŸŽ¥ 5-minute walkthrough:** https://youtu.be/SYJvHg6HocQ
+> **ðŸŽ¥ 1-minute deploy + unit test:** https://youtu.be/fgeYSGlzY7o
+> **ðŸ“¦ Contracts (QDay Aevum Testnet, Chain 44005):**
+> [AgentAuthorization](https://explorer-test.qday.info/address/0xc2D2BF418F37ef4C433f12E66CdEe28E9E733CC0) Â·
 > [StreamingAgent](https://explorer-test.qday.info/address/0xE8Ec4599E43f6d735603e5d7b0d2eB5D49Ec6209)
 
 **Programmable stablecoin payment streams with controlled AI-agent authorization, built on QDay Aevum testnet.**
@@ -284,11 +284,11 @@ Any of these invalidates outstanding approvals (bumps `epoch`):
 
 StreamPay AI is architected so that the `agent` address in every `AgentPermission` can become an **ERC-8004 on-chain agent identity** without changing the streaming logic.
 
-**Current design → ERC-8004 mapping:**
+**Current design â†’ ERC-8004 mapping:**
 
 | ERC-8004 primitive | StreamPay AI today | Mainnet integration path |
 |---|---|---|
-| Agent identity registry | `agent` is an EOA address | Resolve `agent` → `erc8004Id` before `authorizeAgent` succeeds |
+| Agent identity registry | `agent` is an EOA address | Resolve `agent` â†’ `erc8004Id` before `authorizeAgent` succeeds |
 | Agent reputation | Not on-chain | Store `erc8004Id` in `AgentPermission`; surface reputation in the dApp before the user signs |
 | Agent validation | `maxTotalSpend`, `maxPerPayment`, `expiresAt` | Same, plus an ERC-8004 attestation requirement for high-value agents |
 | Revocation signal | `revokeAgent` bumps `permission.epoch` | Emit an ERC-8004 "revoked" event in the same tx so reputation trackers update instantly |
@@ -340,8 +340,8 @@ StreamPay AI charges a **0.3% protocol fee** on stream creation, paid in tUSD8. 
 
 ## Ecosystem contributions
 
-- **QDay Starter Kit — tUSD8 decimal mismatch** — the starter kit's example code uses `parseEther` for amount entry, but tUSD8 is 6 decimals. Using `parseEther` silently multiplies amounts by 10^12. Recommended fix: `parseUnits(amount, 6)` with a decimals read from the token. [Issue link — paste URL after filing]
-- **QDay Starter Kit — Hardhat 3 migration note** — Hardhat 3 removes the named `ethers` export from `hardhat`. The fix is to create a connection with `const { ethers, networkHelpers } = await hre.network.create()`. [Issue link — paste URL after filing]
+- **QDay Starter Kit — tUSD8 decimal mismatch** — the starter kit's example code uses `parseEther` for amount entry, but tUSD8 is 6 decimals. Using `parseEther` silently multiplies amounts by 10^12. Recommended fix: `parseUnits(amount, 6)` with a decimals read from the token. [Issue #5](https://github.com/qday-io/aevum-starter-kit/issues/5)
+- **QDay Starter Kit — Hardhat 3 migration note** — Hardhat 3 removes the named `ethers` export from `hardhat`. The fix is to create a connection with `const { ethers, networkHelpers } = await hre.network.create()`. [Issue #6](https://github.com/qday-io/aevum-starter-kit/issues/6)
 
 > These were filed during the Aevum Builder Challenge #1 build window and are linked here so future QDay builders do not hit the same edge cases.
 
