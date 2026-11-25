@@ -1,10 +1,10 @@
 ﻿<!-- C:\Users\HP\Desktop\qday-streaming-agent\README.md -->
 # GIMBLOCKCHAIN StreamPay AI
 
-> **â–¶ Live demo:** https://qday-streaming-agent.onrender.com
-> **ðŸŽ¥ 5-minute walkthrough:** https://youtu.be/SYJvHg6HocQ
-> **ðŸŽ¥ 1-minute deploy + unit test:** https://youtu.be/fgeYSGlzY7o
-> **ðŸ“¦ Contracts (QDay Aevum Testnet, Chain 44005):**
+> **▶ Live demo:** https://qday-streaming-agent.onrender.com
+> **🎥 5-minute walkthrough:** https://youtu.be/SYJvHg6HocQ
+> **🎥 1-minute deployement unit testing:** https://youtu.be/fgeYSGlzY7o
+> **📦 Contracts (QDay Aevum Testnet, Chain 44005):**
 > [AgentAuthorization](https://explorer-test.qday.info/address/0xc2D2BF418F37ef4C433f12E66CdEe28E9E733CC0) Â·
 > [StreamingAgent](https://explorer-test.qday.info/address/0xE8Ec4599E43f6d735603e5d7b0d2eB5D49Ec6209)
 
